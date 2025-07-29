@@ -396,10 +396,7 @@ export default function ThanksPage() {
           {renderVideo(videoUrl5, "Desbloquea tu regalo", 0.8)}
         </div>
 
-       
-
-
-
+      
       </main>
 {/* Casos de Éxito Section */}
 <div id="casos-de-exito" className="max-w-4xl mx-auto mb-16">
