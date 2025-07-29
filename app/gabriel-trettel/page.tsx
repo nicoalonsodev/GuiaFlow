@@ -334,7 +334,7 @@ export default function ThanksPage() {
                 La Solución
               </h2>
               <p className="text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed">
-                Henko IA atiende a tus clientes en menos de 1 minuto y aumenta tu conversión hasta un 391%.
+                Flow IA atiende a tus clientes en menos de 1 minuto y aumenta tu conversión hasta un 391%.
               </p>
             </div>
           </motion.div>
@@ -377,7 +377,7 @@ export default function ThanksPage() {
                 La Solución
               </h2>
               <p className="text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed">
-                HENKO AI contacta a tus prospectos de forma automática, inmediata y 24/7, además realiza hasta 10 seguimientos en 72 horas y aumentando tus ventas en un 234%.
+                Flow AI contacta a tus prospectos de forma automática, inmediata y 24/7, además realiza hasta 10 seguimientos en 72 horas y aumentando tus ventas en un 234%.
               </p>
             </div>
           </motion.div>
@@ -927,7 +927,7 @@ export default function ThanksPage() {
 
               </p>
               <p className="text-base sm:text-lg leading-relaxed mt-3 sm:mt-4">
-               Hoy , junto con Henko una agencia enfocada en marketing digital e inteligencia artificial seguimos potenciando proyectos con visión de crecimiento y tecnología.
+               Hoy , junto con Flow IA, una agencia enfocada en marketing digital e inteligencia artificial seguimos potenciando proyectos con visión de crecimiento y tecnología.
               </p>
             </GlowingCard>
           </motion.div>
