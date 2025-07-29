@@ -12,6 +12,32 @@ import AnimatedBackground from "@/components/animated-background"
 import AnimatedText from "@/components/animated-text"
 import PhoneFrame from "@/components/phone-frame"
 
+const fadeInUpVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
+
+const scaleInVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: (i: number) => ({
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+}
+
 export default function ThanksPage() {
   const [_, setScrollY] = useState(0)
   const mainRef = useRef<HTMLDivElement>(null)
@@ -47,32 +73,6 @@ export default function ThanksPage() {
     }
   }, [])
 
-  const fadeInUpVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    }),
-  }
-
-  const scaleInVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: (i: number) => ({
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    }),
-  }
-
   const staggeredContainerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -96,20 +96,58 @@ export default function ThanksPage() {
     },
   }
 
-  const videoUrl = "https://fast.wistia.net/embed/iframe/uztldyn7zc"
-  const videoUrl2 = "https://fast.wistia.net/embed/iframe/krunwmloe3"
-  const videoUrl3 = "https://fast.wistia.net/embed/iframe/2sdfzg1uts"
-  const videoUrl4 = "https://fast.wistia.net/embed/iframe/74c61cfbvk"
+  const videoUrl1 = "https://fast.wistia.net/embed/iframe/uztldyn7zc"
+  // const videoUrl2 = "https://fast.wistia.net/embed/iframe/9q1lzwig3x"
+  const videoUrl3 = "https://fast.wistia.net/embed/iframe/krunwmloe3"
+  const videoUrl4 = "https://fast.wistia.net/embed/iframe/2sdfzg1uts"
+  const videoUrl5 = "https://fast.wistia.net/embed/iframe/74c61cfbvk"
 
+
+  //   const videoUrl = "https://fast.wistia.net/embed/iframe/uztldyn7zc"
+  // const videoUrl2 = "https://fast.wistia.net/embed/iframe/krunwmloe3"
+  // const videoUrl3 = "https://fast.wistia.net/embed/iframe/2sdfzg1uts"
+  // const videoUrl4 = "https://fast.wistia.net/embed/iframe/74c61cfbvk"
   const wpMessage =
-    "https://wa.me/5493512379850?text=Hola%20Alejo%20c%C3%B3mo%20est%C3%A1s%3F%20Confirmo%20mi%20llamada!"
+    "https://wa.me/+59891684892?text=Hola%20Christian%20c%C3%B3mo%20est%C3%A1s%3F%20Confirmo%20mi%20llamada!"
+
+  const renderVideo = (url: string, title: string, customDelay: number = 0) => (
+    <motion.div
+      className="w-full mx-auto relative mb-8"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.2 + customDelay }}
+    >
+      <div
+        className={`relative w-full overflow-hidden rounded-xl shadow-lg border border-gray-800/30 bg-black/20 backdrop-blur-sm ${"pt-[56.25%]"}`}
+      >
+        {url.includes("wistia") ? (
+          <iframe
+            src={url}
+            allow="autoplay; fullscreen"
+            allowFullScreen
+            className="absolute top-0 left-0 w-full h-full"
+            title={title}
+          ></iframe>
+        ) : (
+          <iframe
+            src={url.replace("/view?usp=drive_link", "/preview")}
+            allow="autoplay; fullscreen"
+            allowFullScreen
+            className="absolute top-0 left-0 w-full h-full"
+            title={title}
+          ></iframe>
+        )}
+        <div className="absolute inset-0 rounded-xl pointer-events-none border border-green-400/20 shadow-lg shadow-green-400/30"></div>
+      </div>
+    </motion.div>
+  )
 
   return (
     <div
       className="relative flex flex-col min-h-screen bg-black text-white overflow-hidden"
       style={{ letterSpacing: "0.03em" }}
     >
-      {/* Animated Background */}
+        {/* Animated Background */}
       <div className="fixed inset-0 z-0">
         <AnimatedBackground mousePosition={mousePosition} />
       </div>
@@ -119,8 +157,8 @@ export default function ThanksPage() {
         className="fixed inset-0 z-0 bg-gradient-to-b from-black/80 via-black/50 to-black/80"
         style={{
           backgroundImage: `
-            radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(90, 140, 193, 0.15), transparent 40%),
-            radial-gradient(circle at 50% 50%, rgba(90, 140, 193, 0.1), transparent 70%)
+            radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(135, 206, 250, 0.15), transparent 40%), /* Light blue with 15% opacity */
+            radial-gradient(circle at 50% 50%, rgba(135, 206, 250, 0.1), transparent 70%) /* Light blue with 10% opacity */
           `,
         }}
       />
@@ -137,14 +175,14 @@ export default function ThanksPage() {
           className="group relative text-sm md:text-base font-medium transition-colors hover:text-white"
         >
           <span>Preguntas Frecuentes</span>
-          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#5A8CC1] transition-all duration-500 group-hover:w-full shadow-[0_0_10px_rgba(90,140,193,0.7)]"></span>
+          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#5eff00] transition-all duration-500 group-hover:w-full shadow-[0_0_10px_rgba(94,255,0,0.7)]"></span>
         </Link>
         <Link
           href="#casos-de-exito"
           className="group relative text-sm md:text-base font-medium transition-colors hover:text-white"
         >
           <span>Casos de Éxito</span>
-          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#5A8CC1] transition-all duration-500 group-hover:w-full shadow-[0_0_10px_rgba(90,140,193,0.7)]"></span>
+          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#5eff00] transition-all duration-500 group-hover:w-full shadow-[0_0_10px_rgba(94,255,0,0.7)]"></span>
         </Link>
       </motion.nav>
 
@@ -167,7 +205,7 @@ export default function ThanksPage() {
           />
         </motion.div>
 
-        {/* Call to Action Section */}
+        {/* CONFIRMAR LLAMADA Section */}
         <div ref={heroRef} className="w-full max-w-4xl mx-auto mb-16">
           <motion.div
             className="relative p-8 rounded-2xl backdrop-blur-xl bg-black/40 border border-gray-800/50 shadow-[0_0_35px_rgba(0,0,0,0.5)]"
@@ -205,145 +243,166 @@ export default function ThanksPage() {
             </motion.div>
           </motion.div>
         </div>
-        <motion.p
-          className="w-full text-center text-xl font-bold lg:text-5xl text-balance mb-6 sm:mb-8 leading-relaxed sm:leading-relaxed tracking-wide"
-          variants={staggeredItemVariants}
-        >
-          En 20 días,
-          <span className="relative z-10 text-[#5A8CC1] font-bold"> creamos tu empleado IA </span> listo para trabajar
-          24/7
-        </motion.p>
 
-        <motion.div
-          className="w-full max-w-4xl mx-auto mb-16 text-center"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          custom={2}
-          variants={fadeInUpVariants}
-        >
-          {/* Video Section */}
-          <motion.div
-            className="w-full mx-auto relative"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+        {/* New Content Section */}
+        <div className="w-full max-w-4xl mx-auto mb-16">
+          <motion.h1
+            className="w-full text-center text-xl font-bold lg:text-5xl text-balance mb-6 sm:mb-8 leading-relaxed sm:leading-relaxed tracking-wide"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            custom={0}
+            variants={fadeInUpVariants}
           >
-            {/* Contenedor responsivo */}
-            <div
-              className={`relative w-full overflow-hidden rounded-xl shadow-lg border border-gray-800/30 bg-black/20 backdrop-blur-sm ${"pt-[56.25%]"}`}
-            >
-              {/* Iframe del video */}
-              <iframe
-                src={videoUrl2}
-                allow="autoplay; fullscreen"
-                allowFullScreen
-                className="absolute top-0 left-0 w-full h-full"
-                title="Video Flow IA"
-              ></iframe>
+            Creamos tu
+            <span className="relative z-10 text-[#5A8CC1] font-bold"> Empleado IA </span> 
+            listo para vender 24/7
+          </motion.h1>
 
-              {/* Efecto de brillo en los bordes */}
-              <div className="absolute inset-0 rounded-xl pointer-events-none border border-blue-400/20 shadow-lg shadow-blue-400/30"></div>
+          {/* {renderVideo(videoUrl2, "Video 1: Empleado IA listo para vender 24/7", 0)} */}
+
+          <motion.div
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            custom={1}
+            variants={fadeInUpVariants}
+          >
+            <p
+              className="text-lg sm:text-xl md:text-3xl mb-6 sm:mb-8 font-light px-2 mt-8 tracking-wide text-red-500 font-bold"
+              style={{ wordSpacing: "0.2em" }}
+            >
+              🚨NO HEMOS TERMINADO🚨
+              <br />
+              TU LLAMADA PUEDE SER CANCELADA…
+            </p>
+            <p
+              className="text-xl sm:text-2xl md:text-4xl mb-6 sm:mb-8 font-light px-2 tracking-wide"
+              style={{ wordSpacing: "0.2em" }}
+            >
+              ⚠️ Completa Nuestra <span className="text-[#5A8CC1] font-bold">"Guia De Inicio"</span> Para Asegurar Tu Espacio Con Nuestro Equipo & Recibir Un Agente Setter IA De Regalo
+              <br />
+              En Caso De Trabajar Juntos
+            </p>
+
+            <p className="text-xl sm:text-2xl md:text-3xl mb-4 sm:mb-6 font-bold">
+              Paso #1: Ve el video de 3 minutos debajo
+            </p>
+          </motion.div>
+
+          {renderVideo(videoUrl1, "Paso #1: Mira Este Video De 3 Minutos...", 0.2)}
+
+          <motion.div
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            custom={2}
+            variants={fadeInUpVariants}
+          >
+            <p className="text-xl sm:text-2xl md:text-3xl mb-4 sm:mb-6 font-bold">
+              Paso #2: Mira Nuestra Guía De Arranque
+            </p>
+            <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8  px-2 tracking-wide text-[#5A8CC1] font-bold">
+              Aumenta Tu Conversión En Un 391% Con La Fórmula De 60 Segundos
+            </p>
+          </motion.div>
+
+          {renderVideo(videoUrl3, "Paso #2: Mira Nuestra Guía De Arranque", 0.4)}
+
+          <motion.div
+            className="mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            custom={3}
+            variants={fadeInUpVariants}
+          >
+            {/* Problema Section */}
+            <div className="p-4 border-2 border-red-500 rounded-lg mb-8">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 font-bold text-red-500">
+                El Problema
+              </h2>
+              <p className="text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed">
+                Tu equipo se tarda más de 1 hora en llamar a tus leads y pierdes ventas porque no reciben atención inmediata.
+              </p>
+            </div>
+            {/* Solución Section */}
+            <div className="p-4 border-2 border-green-500 rounded-lg">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 font-bold text-[#5A8CC1]">
+                La Solución
+              </h2>
+              <p className="text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed">
+                Henko IA atiende a tus clientes en menos de 1 minuto y aumenta tu conversión hasta un 391%.
+              </p>
             </div>
           </motion.div>
-          {/* Warning Text */}
-          <p
-            className="text-lg sm:text-xl md:text-3xl mb-6 sm:mb-8 font-light px-2 mt-8 tracking-wide"
-            style={{ wordSpacing: "0.2em" }}
-          >
-            Si no miras esto, <span className="font-bold">no podrás subirte</span>{" "}
-            <motion.span
-              animate={{
-                y: [0, -10, 0],
-                opacity: [1, 0.7, 1],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Number.POSITIVE_INFINITY,
-                repeatType: "reverse",
-              }}
-              className="inline-block ml-2"
-            >
-              👇
-            </motion.span>
-          </p>
-          {/* Video Section */}
-          <motion.div
-            className="w-full mx-auto relative"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            {/* Contenedor responsivo */}
-            <div
-              className={`relative w-full overflow-hidden rounded-xl shadow-lg border border-gray-800/30 bg-black/20 backdrop-blur-sm ${"pt-[56.25%]"}`}
-            >
-              {/* Iframe del video */}
-              <iframe
-                src={videoUrl}
-                allow="autoplay; fullscreen"
-                allowFullScreen
-                className="absolute top-0 left-0 w-full h-full"
-                title="Video Flow IA"
-              ></iframe>
 
-              {/* Efecto de brillo en los bordes */}
-              <div className="absolute inset-0 rounded-xl pointer-events-none border border-blue-400/20 shadow-lg shadow-blue-400/30"></div>
+          <motion.div
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            custom={4}
+            variants={fadeInUpVariants}
+          >
+            <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 px-2 tracking-wide text-[#5A8CC1] font-bold">
+              Y Si Nunca Más Perdieras un Prospecto?
+            </p>
+          </motion.div>
+
+          {renderVideo(videoUrl4, "Y Si Nunca Más Perdieras un Prospecto?", 0.6)}
+
+          <motion.div
+            className="mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            custom={5}
+            variants={fadeInUpVariants}
+          >
+            {/* Problema Section */}
+            <div className="p-4 border-2 border-red-500 rounded-lg mb-8">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 font-bold text-red-500">
+                El Problema
+              </h2>
+              <p className="text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed">
+                Tu equipo no responde a tiempo ni 24/7, tampoco está haciendo los seguimientos correspondientes a tus prospectos o incluso los pierden de vista dejando dinero sobre la mesa
+              </p>
+            </div>
+            {/* Solución Section */}
+            <div className="p-4 border-2 border-green-500 rounded-lg">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 font-bold text-[#5A8CC1]">
+                La Solución
+              </h2>
+              <p className="text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed">
+                HENKO AI contacta a tus prospectos de forma automática, inmediata y 24/7, además realiza hasta 10 seguimientos en 72 horas y aumentando tus ventas en un 234%.
+              </p>
             </div>
           </motion.div>
-          {/* Video Section */}
-          <motion.div
-            className="w-full mx-auto relative mt-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+
+          <motion.h1
+            className="w-full text-center text-xl font-bold lg:text-5xl text-balance mb-6 sm:mb-8 leading-relaxed sm:leading-relaxed tracking-wide"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            custom={6}
+            variants={fadeInUpVariants}
           >
-            {/* Contenedor responsivo */}
-            <div
-              className={`relative w-full overflow-hidden rounded-xl shadow-lg border border-gray-800/30 bg-black/20 backdrop-blur-sm ${"pt-[56.25%]"}`}
-            >
-              {/* Iframe del video */}
-              <iframe
-                src={videoUrl3}
-                allow="autoplay; fullscreen"
-                allowFullScreen
-                className="absolute top-0 left-0 w-full h-full"
-                title="Video Flow IA"
-              ></iframe>
+            Desbloquea tu regalo 🎁
+          </motion.h1>
 
-              {/* Efecto de brillo en los bordes */}
-              <div className="absolute inset-0 rounded-xl pointer-events-none border border-blue-400/20 shadow-lg shadow-blue-400/30"></div>
-            </div>
-          </motion.div>
-          {/* Video Section */}
-          <motion.div
-            className="w-full mx-auto relative mt-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            {/* Contenedor responsivo */}
-            <div
-              className={`relative w-full overflow-hidden rounded-xl shadow-lg border border-gray-800/30 bg-black/20 backdrop-blur-sm ${"pt-[56.25%]"}`}
-            >
-              {/* Iframe del video */}
-              <iframe
-                src={videoUrl4}
-                allow="autoplay; fullscreen"
-                allowFullScreen
-                className="absolute top-0 left-0 w-full h-full"
-                title="Video Flow IA"
-              ></iframe>
+          {renderVideo(videoUrl5, "Desbloquea tu regalo", 0.8)}
+        </div>
 
-              {/* Efecto de brillo en los bordes */}
-              <div className="absolute inset-0 rounded-xl pointer-events-none border border-blue-400/20 shadow-lg shadow-blue-400/30"></div>
-            </div>
-          </motion.div>
-        </motion.div>
+       
 
-        {/* Casos de Éxito Section */}
-        <div id="casos-de-exito" className="max-w-4xl mx-auto mb-16">
+
+
+      </main>
+{/* Casos de Éxito Section */}
+<div id="casos-de-exito" className="max-w-4xl mx-auto mb-16">
           {/* RG servicios */}
           <motion.div
             className="mb-16"
@@ -953,8 +1012,6 @@ export default function ThanksPage() {
             </Accordion>
           </GlowingCard>
         </motion.div>
-      </main>
-
       {/* Footer */}
       <motion.footer
         className="relative z-10 py-6 sm:py-8 border-t border-gray-800/50 backdrop-blur-sm bg-black/30"
