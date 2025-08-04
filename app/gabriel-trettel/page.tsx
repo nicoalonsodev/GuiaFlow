@@ -108,7 +108,7 @@ export default function ThanksPage() {
   // const videoUrl3 = "https://fast.wistia.net/embed/iframe/2sdfzg1uts"
   // const videoUrl4 = "https://fast.wistia.net/embed/iframe/74c61cfbvk"
   const wpMessage =
-    "https://wa.me/+59891684892?text=Hola%20Christian%20c%C3%B3mo%20est%C3%A1s%3F%20Confirmo%20mi%20llamada!"
+    "https://wa.me/+5218139639537?text=Hola%Gabriel%20c%C3%B3mo%20est%C3%A1s%3F%20Confirmo%20mi%20llamada!"
 
   const renderVideo = (url: string, title: string, customDelay: number = 0) => (
     <motion.div
