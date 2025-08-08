@@ -237,10 +237,7 @@ export default function ThanksPage() {
               para ya estar en contacto con tu asesor.
             </motion.p>
 
-            {/* Button */}
-            <motion.div variants={staggeredItemVariants}>
-              <NeonButton href={wpMessage} text="CONFIRMAR LLAMADA" icon={<Check className="mr-2 h-6 w-6" />} />
-            </motion.div>
+
           </motion.div>
         </div>
 
@@ -394,6 +391,10 @@ export default function ThanksPage() {
           </motion.h1>
 
           {renderVideo(videoUrl5, "Desbloquea tu regalo", 0.8)}
+                      {/* Button */}
+            <motion.div variants={staggeredItemVariants}>
+              <NeonButton href={wpMessage} text="CONFIRMAR LLAMADA" icon={<Check className="mr-2 h-6 w-6" />} />
+            </motion.div>
         </div>
 
       
